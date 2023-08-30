@@ -1,12 +1,28 @@
 <script setup>
 import { useRouter } from "vue-router"
+import {useCurrentUser, useFirebaseAuth} from "vuefire";
+import {signOut} from "firebase/auth"
 const router = useRouter()
 
+const auth = useFirebaseAuth()
+const user = useCurrentUser()
 
 function register() {
   router.push({ name: "register" })
   console.log("click")
 }
+
+
+async function disconnect(){
+  try {
+    await signOut(auth)
+  } catch (error) {
+    console.error(error)
+  }
+  finally{console.log("ended..")}
+}
+
+
 
 
 </script>
@@ -22,8 +38,9 @@ function register() {
       <v-card-actions>
         <v-btn-group>
           <!-- <v-btn @click="goToLogin">Login</v-btn> -->
-          <v-btn to="/auth">Login</v-btn>
-          <v-btn @click="register">Register</v-btn>
+          <v-btn v-if="user?.email" @click="disconnect">Disconnet</v-btn>
+          <v-btn v-if="!user?.email" to="/auth">Login</v-btn>
+          <v-btn v-if="!user?.email" @click="register">Register</v-btn>
         </v-btn-group>
       </v-card-actions>
     </v-app-bar>

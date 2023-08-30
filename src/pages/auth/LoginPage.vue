@@ -1,9 +1,12 @@
 <script setup>
-import { useFirebaseAuth } from 'vuefire';
+import { useCurrentUser, useFirebaseAuth } from 'vuefire';
 import { signInWithEmailAndPassword  } from 'firebase/auth';
+import {useRouter} from "vue-router"
+
 
 import { ref } from 'vue';
 
+const router = useRouter()
 const userInputs = ref({ email: '', password: '' });
 const validations = ref({ error: '', raised: false });
 
@@ -16,7 +19,8 @@ async function login() {
 			userInputs.value.email,
 			userInputs.value.password,
 		);
-		console.log(credential);
+		console.log(credential.user);
+    console.log(useCurrentUser())
 	} catch (error) {
 		console.log(error.message);
 		validations.value.error = error.message;
@@ -24,6 +28,7 @@ async function login() {
 	} finally {
 		userInputs.value.email=""
 		userInputs.value.password=""
+    router.push({name:"landing-page"})
 	}
 }
 </script>

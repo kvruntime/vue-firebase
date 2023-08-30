@@ -11,7 +11,6 @@ const count = ref(0)
 <template>
   <h1>{{ msg }}</h1>
   <div class="card">
-    <v-btn variant="tonal">Vuetify Button</v-btn>
     <button type="button" @click="count++"><v-btn>count is {{ count }}</v-btn></button>
     <p>
       Edit

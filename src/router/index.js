@@ -1,5 +1,6 @@
 'use strict';
 import { createRouter, createWebHashHistory } from 'vue-router';
+import { useCurrentUser } from 'vuefire';
 
 const routes = [
 	{
@@ -25,11 +26,18 @@ const routes = [
 			},
 		],
 	},
+	{
+		name: 'landing-page',
+		path: '/landing',
+		component: () => import('@/pages/LandingPage.vue'),
+	},
 ];
 
 const router = createRouter({
 	history: createWebHashHistory(import.meta.env.BASE_URL),
 	routes,
 });
+
+
 
 export default router;
