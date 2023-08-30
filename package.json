@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port=4000",
     "build": "vite build",
     "preview": "vite preview"
   },
@@ -12,7 +12,8 @@
     "firebase": "^10.3.0",
     "vue": "^3.3.4",
     "vue-router": "^4.2.4",
-    "vuefire": "^3.1.15"
+    "vuefire": "^3.1.15",
+    "vuetify": "^3.3.14"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.2.3",
