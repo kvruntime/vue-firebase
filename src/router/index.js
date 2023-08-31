@@ -1,6 +1,5 @@
 'use strict';
 import { createRouter, createWebHashHistory } from 'vue-router';
-import { useCurrentUser } from 'vuefire';
 
 const routes = [
 	{
@@ -12,17 +11,20 @@ const routes = [
 		name: 'auth',
 		path: '/auth',
 		redirect: '/login',
+		meta: { requiresAuth: true },
 		component: () => import('@/layouts/AuthLayout.vue'),
 		children: [
 			{
 				name: 'login',
 				path: '/login',
 				component: () => import('@/pages/auth/LoginPage.vue'),
+				meta: { requiresAuth: true },
 			},
 			{
 				name: 'register',
 				path: '/register',
 				component: () => import('@/pages/auth/RegisterPage.vue'),
+				meta: { requiresAuth: true },
 			},
 		],
 	},
@@ -30,6 +32,13 @@ const routes = [
 		name: 'landing-page',
 		path: '/landing',
 		component: () => import('@/pages/LandingPage.vue'),
+		meta: { requiresAuth: true },
+	},
+	{
+		name: 'user-info',
+		path: '/user',
+		component: () => import('@/pages/UserPage.vue'),
+		meta: { requiresAuth: true },
 	},
 ];
 
@@ -37,7 +46,5 @@ const router = createRouter({
 	history: createWebHashHistory(import.meta.env.BASE_URL),
 	routes,
 });
-
-
 
 export default router;

@@ -1,12 +1,11 @@
 <script setup>
 import { useCurrentUser, useFirebaseAuth } from 'vuefire';
-import { signInWithEmailAndPassword  } from 'firebase/auth';
-import {useRouter} from "vue-router"
-
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { useRouter } from 'vue-router';
 
 import { ref } from 'vue';
 
-const router = useRouter()
+const router = useRouter();
 const userInputs = ref({ email: '', password: '' });
 const validations = ref({ error: '', raised: false });
 
@@ -14,21 +13,21 @@ const auth = useFirebaseAuth();
 
 async function login() {
 	try {
-		const credential = await signInWithEmailAndPassword (
+		await signInWithEmailAndPassword(
 			auth,
 			userInputs.value.email,
 			userInputs.value.password,
 		);
-		console.log(credential.user);
-    console.log(useCurrentUser())
+		console.log(...useCurrentUser().value.email);
 	} catch (error) {
 		console.log(error.message);
 		validations.value.error = error.message;
 		validations.value.raised = true;
 	} finally {
-		userInputs.value.email=""
-		userInputs.value.password=""
-    router.push({name:"landing-page"})
+		userInputs.value.email = '';
+		userInputs.value.password = '';
+
+		router.push({ name: 'landing-page' });
 	}
 }
 </script>
@@ -64,7 +63,7 @@ async function login() {
 	</v-sheet>
 
 	<v-snackbar
-  y="top"
+		y="top"
 		:timeout="2000"
 		color="blue-grey"
 		rounded="pill"
