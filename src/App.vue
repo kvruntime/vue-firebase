@@ -11,12 +11,10 @@ const user = useCurrentUser();
 user.value?.email;
 
 router.beforeEach(async (to) => {
-	console.log(user);
-	console.log('email', user.value?.email);
-	console.log('auth', user.value?.email === undefined);
 
 	if (user.value?.email === undefined) {
 		if (to.path === '/login' || to.path === '/register') return true;
+		else if (to.path==="/") return "/login"
 		else return false;
 	} else {
 		if (to.path === '/login' || to.path == '/register') {
