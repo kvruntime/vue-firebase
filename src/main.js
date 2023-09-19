@@ -9,6 +9,7 @@ import * as components from 'vuetify/components';
 import 'vuetify/dist/vuetify.min.css';
 
 const app = createApp(App);
+
 app
 	.use(router)
 	.use(createVuetify({ components }))

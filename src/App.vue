@@ -4,11 +4,27 @@ import AppLayout from './layouts/AppLayout.vue';
 import AppHeader from './components/AppHeader.vue';
 import { useRouter } from 'vue-router';
 import { useCurrentUser } from 'vuefire';
-
+// import { useCurrentUser, useFirebaseAuth } from 'vuefire';
 const router = useRouter();
 const user = useCurrentUser();
 
+user.value?.email;
 
+router.beforeEach(async (to) => {
+	console.log(user);
+	console.log('email', user.value?.email);
+	console.log('auth', user.value?.email === undefined);
+
+	if (user.value?.email === undefined) {
+		if (to.path === '/login' || to.path === '/register') return true;
+		else return false;
+	} else {
+		if (to.path === '/login' || to.path == '/register') {
+			return false;
+		}
+	}
+	return true;
+});
 </script>
 
 <template>
