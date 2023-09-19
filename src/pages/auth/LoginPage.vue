@@ -60,6 +60,11 @@ async function login() {
 
 			<div>{{ userInputs }}</div>
 		</v-form>
+
+		<div>
+		<span>Don't have account?:</span> <router-link to="/register">Create Account</router-link>
+		</div>
+
 	</v-sheet>
 
 	<v-snackbar

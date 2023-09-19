@@ -28,7 +28,7 @@ router.beforeEach(async (to) => {
 <template>
 	<AppLayout>
 		<template v-slot:header>
-			<AppHeader />
+			<AppHeader v-if="user?.email" />
 		</template>
 
 		<template v-slot:main>
