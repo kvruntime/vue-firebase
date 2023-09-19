@@ -56,6 +56,10 @@ async function register() {
 
 			<div>{{ userInputs }}</div>
 		</v-form>
+
+		<div>
+		<span>Already Have Account?:</span> <router-link to="/login">Login</router-link>
+		</div>
 	</v-sheet>
 
 	<v-snackbar
